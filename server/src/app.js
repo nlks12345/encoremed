@@ -3,8 +3,8 @@ const express = require('express')
 const bodyParse = require('body-parser')
 const cors = require('cors')
 const morgan = require('morgan')
-
 const app = express()
+
 app.use(morgan('combine'))
 app.use(bodyParse.json())
 app.use(cors())
@@ -19,4 +19,10 @@ app.get('/status',(req,res)=>{
     })
 })
 
+app.post('/register',(req,res)=>{
+    console.log(req.body);
+    res.send({
+        message: `Hello ${req.body.email}! Your user was registered!`
+    })
+})
 app.listen(process.env.PORT || 8081)
